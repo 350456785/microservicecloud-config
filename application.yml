@@ -6,9 +6,9 @@
 spring:
   profiles: dev
   application:
-    name:microservice-config-myideas-dev
+    name: microservice-config-myideas-dev
 ---
 spring:
   profiles: test
   application:
-    name:microservice-config-myideas-test
+    name: microservice-config-myideas-test
