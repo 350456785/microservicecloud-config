@@ -1,0 +1,81 @@
+﻿spring:
+  profiles:
+    active:
+    - dev
+---
+server:
+  port: 8001
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: top.myideas.springcloud.entities
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml
+  
+spring:
+  profiles: dev
+  application:
+    name: microservicecloud-config-dept-client  #对外的微服务框架名称
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver 
+    url: jdbc:mysql://localhost:3306/cloudDB01
+    username: root
+    password: root
+    dbcp2:
+      min-idle: 5  #连接池最小连接数
+      initial-size: 5 #初始化连接数
+      max-total: 5
+      max-wait-millis: 200
+      
+eureka:
+  client:  #客户端注册进eureka服务中
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka  
+  instance:
+    instance-id: microservicecloud-dept8001-hystrix  #在eureka中自定义服务名   
+    prefer-ip-address: true  #访问路径可以显示IP地址
+    
+info:
+  app.name: myideas-microservicecloud
+  company.name: www.myideas.top
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
+---
+server:
+  port: 8001
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: top.myideas.springcloud.entities
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml
+  
+spring:
+  profiles: test
+  application:
+    name: microservicecloud-config-dept-client  #对外的微服务框架名称
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver 
+    url: jdbc:mysql://localhost:3306/cloudDB02
+    username: root
+    password: root
+    dbcp2:
+      min-idle: 5  #连接池最小连接数
+      initial-size: 5 #初始化连接数
+      max-total: 5
+      max-wait-millis: 200
+      
+eureka:
+  client:  #客户端注册进eureka服务中
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka  
+  instance:
+    instance-id: microservicecloud-dept8001-hystrix  #在eureka中自定义服务名   
+    prefer-ip-address: true  #访问路径可以显示IP地址
+    
+info:
+  app.name: myideas-microservicecloud
+  company.name: www.myideas.top
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
